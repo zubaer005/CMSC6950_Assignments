@@ -1,5 +1,13 @@
+>>>> Grade: 8/10
+>>>> It is much easier to evaluate this assignment if you included the output as requested in the assignment instructions.
+
 1. How many earthquakes are listed in the table?
+<<<<<<< HEAD
 wc -l signif.txt.tsv | cut 
+=======
+
+>>>> Did you miss this one?
+>>>>>>> 1aed3350bedbd8d1671e61d57f280d46dfb27eb7
 
 2. How many columns are in the table?
 Command: head -n 1 signif.txt.tsv | wc -w
@@ -8,11 +16,17 @@ Output: 47
 3. Use the cut command to create a new file that just has the data from the columns for YEAR, EQ_PRIMARY and COUNTRY. Hint: you can get the column numbers by using the head command to view the first row and then visually count the column numbers for the above fields (there is also a unix command to do this, but we didn't cover it in class). Call the new data file 'Year_Mag_Country.tsv'. You can use 'Year_Mag_Country.tsv' for the rest of the exercises below.
 Command: cut  -f 3,10,18 signif.txt.tsv > Year_Mag_Country.tsv
 
+>>>> the default separator for the `cut` command is a <TAB> charactor
+
 4.EQ_PRIMARY is the assigned earthquake magnitude. With your new file 'Year_Mag_Country.tsv', sort the data based on the numeric value of the EQ_PRIMARY column, then list the lines for the top ten largest earthquakes.
 Command: cut  -f 2 Year_Mag_Country.tsv| sort -nr | head -n 10
 
+>>>> You've lost the year and country information in your output
+
 5.How many unique countries are listed in the database? Use cut,sort,uniq, wc and a few pipes | to form a single expression that answers this question.
 Command: cut  -f 3 Year_Mag_Country.tsv | sort | uniq | wc -l
+
+>>>> Use `tail -n +2` to exclude the header line. You are over counting by one
 
 6.Use the grep command to count how many earthquakes in the database are located in the USA or USA TERRITORY
 Command: grep USA Year_Mag_Country.tsv | wc -l
@@ -37,6 +51,8 @@ echo "Largest earthquake: $larg_eq";
 sh countEq_getLargestEq.sh CHILE
 Total number of earthquakes: 192
 Largest earthquake:  9.5
+
+>>>> Nice!
 
 11.Compute the total number of earthquakes each year and then output a sorted list of the top ten years with the most earthquakes. Paste your command and the top ten list below.
 cut  -f 1 Year_Mag_Country.tsv | uniq -c | sort -nr | head -n 10
